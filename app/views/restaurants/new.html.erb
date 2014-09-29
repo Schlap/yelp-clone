@@ -1,6 +1,9 @@
-<form action="/restaurants" method="POST">
-  Name: <input type="text" name="name">
-  Cuisine: <input type="text" name="cuisine">
-  Description: <input type="text" name="description">
-  <button type="submit">Submit</button>
-</form>
+<%= form_for @restaurant do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :cuisine %>
+  <%= f.text_field :cuisine %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>
