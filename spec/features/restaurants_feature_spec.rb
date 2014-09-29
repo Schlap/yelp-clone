@@ -32,6 +32,23 @@ describe 'restaurants' do
       expect(page).to have_selector("input[name='cuisine']")
       expect(page).to have_selector("input[name='description']")
     end
+
+    it 'submit restaurant information creates a new restaurant' do
+      expect(Restaurant.count).to be 0
+      visit '/restaurants'
+      click_link "Add a restaurant"
+      fill_in "name", with: "Nandos"
+      fill_in "cuisine", with: "Portuguese"
+      fill_in "description", with: "Chicken"
+      click_button 'Submit'
+      expect(Restaurant.count).to be 1
+      expect(page).to have_content "Nandos"
+    end
+
+
+
+
   end
+
 
 end
