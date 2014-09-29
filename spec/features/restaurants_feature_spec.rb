@@ -73,3 +73,18 @@ describe 'deleting restaurants' do
   end
 
 end
+
+describe 'showing individual restaurants' do
+
+  before do
+    Restaurant.create(name: "Nandos", cuisine: "Portuguese", description: "Finger lickin' good")
+  end
+
+  it 'clicking the restaurant name brings the user to a page with more info' do
+    visit '/restaurants'
+    click_link 'Nandos'
+    expect(page).to have_content("Portuguese")
+    expect(page).to have_content("Finger lickin' good")
+  end
+
+end
