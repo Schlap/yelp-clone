@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'restaurants' do
+describe 'displaying restaurants' do
 
   context 'no restaurants added' do
     it 'should display a prompt to add a restaurant' do
@@ -55,6 +55,21 @@ describe 'editing restaurants' do
     click_button "Update Restaurant"
     expect(page).to have_content "PFC"
     expect(page.current_path).to eq '/restaurants'
+  end
+
+end
+
+describe 'deleting restaurants' do
+
+  before do
+    Restaurant.create(name: 'Nandos')
+  end
+
+  it 'allows the user to delete a restaurant' do
+    visit '/restaurants'
+    click_link 'Delete Nandos'
+    expect(page).not_to have_content("Nandos")
+    expect(page).to have_content("Restaurant deleted")
   end
 
 end
