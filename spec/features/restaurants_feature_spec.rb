@@ -22,4 +22,16 @@ describe 'restaurants' do
       expect(page).to have_link "Add a restaurant"
     end
   end
+
+  context 'adding a restaurant' do
+    it 'clicking the link brings you to a form input' do
+      visit '/restaurants'
+      click_link "Add a restaurant"
+      expect(page.current_path).to eq "/restaurants/new"
+      expect(page).to have_selector("input[name='name']")
+      expect(page).to have_selector("input[name='cuisine']")
+      expect(page).to have_selector("input[name='description']")
+    end
+  end
+
 end
