@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ReviewsHelper, type: :helper do
+RSpec.describe ReviewsHelper, type: :helper do
   context 'star rating' do
 
     it 'does nothing for an invalid number' do
