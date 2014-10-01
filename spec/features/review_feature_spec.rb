@@ -20,4 +20,11 @@ describe 'reviewing' do
     expect(page).to have_content("so so")
   end
 
+  it 'displays the average rating for each restaurant' do
+    leave_review("so so", '3')
+    leave_review("so so", '1')
+    expect(current_path).to eq '/restaurants'
+    expect(page).to have_content("Average rating: 2.0")
+  end
+
 end
