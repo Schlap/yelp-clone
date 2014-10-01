@@ -15,5 +15,9 @@ describe ReviewsHelper, type: :helper do
       expect(helper.star_rating(3)).to eq '★★★☆☆'
     end
 
+    it 'rounds up to the nearest whole number' do
+      expect(helper.star_rating(2.6)).to eq helper.star_rating(3)
+    end
+
   end
 end
