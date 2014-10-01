@@ -13,7 +13,6 @@ class RestaurantsController < ApplicationController
     if @restaurant.save
       redirect_to restaurants_path
     else
-      flash[:notice] = "Errors"
       render 'new'
     end
   end
