@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'launchy'
 
 describe 'endorsing reviews' do
 
