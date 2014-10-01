@@ -37,6 +37,12 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'rspec-rails', group: :test
-gem 'capybara', group: :test
-gem 'rspec-collection_matchers', group: :test
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'rspec-collection_matchers'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+  gem 'launchy'
+end
