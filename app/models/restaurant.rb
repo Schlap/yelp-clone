@@ -6,7 +6,7 @@ class Restaurant < ActiveRecord::Base
     if self.reviews.count == 0
       'N/A'
     else
-      (self.reviews.map { |x| x.rating }.inject(:+)) / self.reviews.count
+      (self.reviews.inject(0) { |sum, review| sum + review.rating }) / self.reviews.count
     end
   end
 
