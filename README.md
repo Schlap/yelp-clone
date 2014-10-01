@@ -17,24 +17,24 @@ The next steps are setting up user accounts, restricting some features to logged
 
 How to use
 ----------
-1. Clone the repository:
+Clone the repository:
 ```shell
 $ git clone git@github.com:ch2ch3/yelp-clone.git
 ```
 
-2. Change into the directory:
+Change into the directory:
 ```shell
 $ cd yelp-clone
 ```
 
-3. Install all dependencies:
+Install all dependencies:
 ```shell
 $ bundle install
 ```
 
-4. Start the server:
+Start the server:
 ```shell
 $ rails server
 ```
 
-5. Visit http://localhost:3000/restaurants in your browser.
+Visit http://localhost:3000/restaurants in your browser.
