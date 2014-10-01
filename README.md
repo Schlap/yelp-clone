@@ -7,4 +7,34 @@ This week's project is an introduction to working with Rails. The aim is to recr
 
 Only logged-in users should be able to create restaurants and leave reviews, users should not be able to edit or delete restaurants they did not add, and users can only leave one review per restaurant.
 
-Current stage of project: restaurants can be created, edited, deleted, and reviewed. The next steps are introducing form validations, user management, and eventually an improved UX.
+Current stage of project:
+- restaurants can be created, edited, deleted
+- users can write reviews
+- users can endorse reviews written by other users
+- restaurants have an average rating calculated from all submitted reviews
+
+The next steps are setting up user accounts, restricting some features to logged-in users, and eventually an improved UX.
+
+How to use
+----------
+1. Clone the repository:
+```shell
+$ git clone git@github.com:ch2ch3/yelp-clone.git
+```
+
+2. Change into the directory:
+```shell
+$ cd yelp-clone
+```
+
+3. Install all dependencies:
+```shell
+$ bundle install
+```
+
+4. Start the server:
+```shell
+$ rails server
+```
+
+5. Visit http://localhost:3000/restaurants in your browser.
