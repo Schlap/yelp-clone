@@ -3,7 +3,11 @@ class Restaurant < ActiveRecord::Base
   validates :name, length: { minimum: 3 }, uniqueness: true
 
   def average_rating
-    'N/A'
+    if self.reviews.count == 0
+      'N/A'
+    else
+      (self.reviews.map { |x| x.rating }.inject(:+)) / self.reviews.count
+    end
   end
 
 end

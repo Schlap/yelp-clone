@@ -22,6 +22,11 @@ RSpec.describe Restaurant, type: :model do
     end
 
     context 'with reviews' do
+      it 'returns the rating from one review if there is only one review' do
+        restaurant = Restaurant.create(name: 'The Ivy')
+        restaurant.reviews.create(rating: 4)
+        expect(restaurant.average_rating).to eq 4
+      end
     end
   end
   
