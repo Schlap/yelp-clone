@@ -8,6 +8,7 @@ $(document).ready(function(){
     event.preventDefault();
     $.post(this.href, function(response){
       endorsementCount.text(response.new_endorsements_count);
+    $('.notice').text(response.notice);
     });
   })
 })

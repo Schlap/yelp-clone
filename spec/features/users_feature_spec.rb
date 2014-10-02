@@ -44,6 +44,8 @@ describe 'Yelp users' do
 
     before do
       create :pret
+      pret = Restaurant.find_by(name: 'Pret')
+      pret.reviews.create comment: 'Great!', rating: 5
     end
 
     it 'adding a restaurant' do
@@ -68,6 +70,13 @@ describe 'Yelp users' do
       visit '/restaurants'
       click_link 'Review Pret'
       expect(page).to have_content 'Please log in or sign up for an account.'
+    end
+
+    it 'endorsing a review', js: true do
+      visit '/restaurants'
+      click_link 'Endorse this review'
+      expect(page).to have_content '0 endorsements'
+      expect(page).to have_content 'Please log in or sign up for an account to endorse a review.'
     end
 
   end
