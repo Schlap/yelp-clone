@@ -98,6 +98,14 @@ describe 'Yelp users' do
       expect(page).to have_content 'Sorry, you can only review a restaurant once.'
     end
 
+    it 'endorsing a review', js: true do
+      leave_review "Amazing!", 5
+      click_link 'Endorse this review'
+      click_link 'Endorse this review'
+      expect(page).to have_content '1 endorsement'
+      expect(page).to have_content 'Sorry, you can only endorse a review once.'
+    end
+
   end
 
 end
