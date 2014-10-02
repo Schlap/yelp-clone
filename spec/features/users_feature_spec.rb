@@ -116,10 +116,6 @@ describe 'Yelp users' do
       @ethel = create :ethel
       login_as @ethel, scope: :user
       leave_review "Super!", '★★★★★'
-      vincent = create :vincent
-      login_as vincent, scope: :user
-      leave_review "Shit!", '★'
-      login_as @ethel, scope: :user
       visit '/restaurants'
     end
 
