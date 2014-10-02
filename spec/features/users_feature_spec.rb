@@ -10,6 +10,7 @@ describe 'Yelp users' do
       visit '/restaurants'
       click_link 'Register'
       fill_in 'Email', with: 'ethel@gmail.com'
+      fill_in 'Username', with: 'ch2ch3'
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
       click_button 'Sign up'
@@ -27,7 +28,7 @@ describe 'Yelp users' do
     it 'can sign in with their account' do
       visit '/restaurants'
       click_link 'Login'
-      fill_in 'Email', with: 'ethel@factorygirl.com'
+      fill_in 'Login', with: 'ethel@factorygirl.com'
       fill_in 'Password', with: 'f4k3p455w0rd'
       click_button 'Log in'
       expect(page).to have_content 'Signed in successfully.'
