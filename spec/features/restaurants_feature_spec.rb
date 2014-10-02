@@ -17,8 +17,8 @@ describe 'displaying restaurants' do
 
     it 'should display restaurants' do
       visit '/restaurants' 
-      expect(page).to have_content('KFC')
-      expect(page).not_to have_content('No restaurants yet')
+      expect(page).to have_content 'KFC'
+      expect(page).not_to have_content 'No restaurants yet'
     end
   end
 
@@ -52,7 +52,7 @@ describe 'creating restaurants' do
       fill_in 'Name', with: 'KF'
       click_button 'Create Restaurant'
       expect(page).not_to have_css 'h2', text: "KF"
-      expect(page).to have_content("Name is too short (minimum is 3 characters)")
+      expect(page).to have_content "Name is too short (minimum is 3 characters)"
     end
   end
 
@@ -89,8 +89,8 @@ describe 'deleting restaurants' do
   it 'allows the user to delete a restaurant' do
     visit '/restaurants'
     click_link 'Delete KFC'
-    expect(page).not_to have_content("KFC")
-    expect(page).to have_content("Restaurant deleted")
+    expect(page).not_to have_content "KFC"
+    expect(page).to have_content "Restaurant deleted"
   end
 
 end
@@ -104,8 +104,8 @@ describe 'showing individual restaurants' do
   it 'clicking the restaurant name brings the user to a page with more info' do
     visit '/restaurants'
     click_link 'Pret'
-    expect(page).to have_content("Fast organic food")
-    expect(page).to have_content("Good for you and everyone involved")
+    expect(page).to have_content "Fast organic food"
+    expect(page).to have_content "Good for you and everyone involved"
   end
 
 end
