@@ -47,7 +47,7 @@ describe 'Yelp users' do
       create :pret
       ethel = create :ethel
       login_as ethel, scope: :user
-      leave_review "Great!", 5
+      leave_review "Great!", '★★★★★'
       logout(:user)
     end
 
@@ -90,7 +90,7 @@ describe 'Yelp users' do
       create :pret
       ethel = create :ethel
       login_as ethel, scope: :user
-      leave_review "Amazing!", 5
+      leave_review "Amazing!", '★★★★★'
     end
 
     it 'reviewing a restaurant' do
@@ -114,7 +114,7 @@ describe 'Yelp users' do
     create :pret
     ethel = create :ethel
     login_as ethel, scope: :user
-    leave_review "Super!", 5
+    leave_review "Super!", '★★★★★'
     click_link 'Endorse this review'
     expect(page).to have_content '0 endorsements'
     expect(page).to have_content 'Endorsing your own review? Not the best idea.'

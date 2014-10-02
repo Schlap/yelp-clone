@@ -7,7 +7,7 @@ describe 'endorsing reviews' do
     pret = create :pret
     ethel = create :ethel
     login_as ethel, scope: :user
-    leave_review "Average", 3
+    leave_review "Average", '★★★'
   end
 
   it 'displays the updated review endorsement count immediately', js: true do
