@@ -17,7 +17,7 @@ RSpec.describe Restaurant, type: :model do
     context 'no reviews' do
       it 'returns N/A' do
         restaurant = Restaurant.create(name: 'The Ivy')
-        expect(restaurant.average_rating).to eq 'N/A'
+        expect(restaurant.average_rating).to eq 'No ratings yet'
       end
     end
 

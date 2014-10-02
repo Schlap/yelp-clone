@@ -4,7 +4,7 @@ RSpec.describe ReviewsHelper, type: :helper do
   context 'star rating' do
 
     it 'does nothing for an invalid number' do
-      expect(helper.star_rating('N/A')).to eq 'N/A'
+      expect(helper.star_rating('No ratings yet')).to eq 'No ratings yet'
     end
 
     it 'returns 5 black stars for 5' do
