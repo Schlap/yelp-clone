@@ -9,12 +9,12 @@
 Restaurant.destroy_all
 Review.destroy_all
 
-kfc = Restaurant.create(name: 'KFC')
+kfc = Restaurant.create(name: 'KFC', cuisine: 'Fast food', description: 'Fried chicken')
 kfc.reviews.create(rating: 3, comment: "average", user_id: 1)
 kfc.reviews.create(rating: 1, comment: "bad", user_id: 1)
 kfc.reviews.create(rating: 5, comment: "fantastic", user_id: 1)
 
-jamies = Restaurant.create(name: 'Jamie\'s Italian')
+jamies = Restaurant.create(name: "Jamie's Italian", cuisine: 'Italian', description: "Jamie's Italian features fantastic, rustic dishes, using recipes that Jamie Oliver loves! Jamie's Italian was inspired by Italy & its traditions & values.")
 jamies.reviews.create(rating: 3, comment: "average", user_id: 1)
 jamies.reviews.create(rating: 2, comment: "could be better", user_id: 1)
 jamies.reviews.create(rating: 1, comment: "bad", user_id: 1)
