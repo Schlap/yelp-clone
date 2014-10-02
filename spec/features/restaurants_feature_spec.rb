@@ -82,6 +82,8 @@ describe 'deleting restaurants' do
 
   before do
     create :kfc
+    ethel = create :ethel
+    login_as ethel, scope: :user
   end
 
   it 'allows the user to delete a restaurant' do

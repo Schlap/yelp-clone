@@ -58,6 +58,12 @@ describe 'Yelp users' do
       expect(page).to have_content 'Please log in or sign up for an account.'
     end
 
+    it 'deleting a restaurant' do
+      visit '/restaurants'
+      click_link 'Delete Pret'
+      expect(page).to have_content 'Please log in or sign up for an account.'
+    end
+
   end
 
 end
