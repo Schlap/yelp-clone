@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'users' do
+describe 'Yelp users' do
 
   context 'without an account' do
 
@@ -36,6 +36,16 @@ describe 'users' do
       visit '/restaurants'
       click_link 'Logout'
       expect(page).to have_content 'Signed out successfully.'
+    end
+
+  end
+
+  context 'can only access some features when logged in' do
+
+    it 'adding a restaurant' do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      expect(page).to have_content 'Please log in or sign up for an account.'
     end
 
   end

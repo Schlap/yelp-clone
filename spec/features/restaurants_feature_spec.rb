@@ -20,27 +20,29 @@ describe 'displaying restaurants' do
       expect(page).to have_content('KFC')
       expect(page).not_to have_content('No restaurants yet')
     end
-
   end
 
 end
 
 describe 'creating restaurants' do
 
-  context 'a valid restaurant' do
+  before do
+    ethel = create :ethel
+    login_as ethel, scope: :user
+  end
 
+  context 'a valid restaurant' do
     it 'prompts the user to fill in a form and displays the new restaurant' do
       expect(Restaurant.count).to be 0
-        visit '/restaurants'
-        click_link "Add a restaurant"
-        fill_in "Name", with: "Nandos"
-        fill_in "Cuisine", with: "Portuguese"
-        fill_in "Description", with: "Chicken"
-        click_button 'Create Restaurant'
-        expect(Restaurant.count).to be 1
-        expect(page).to have_content "Nandos"
+      visit '/restaurants'
+      click_link "Add a restaurant"
+      fill_in "Name", with: "Nandos"
+      fill_in "Cuisine", with: "Portuguese"
+      fill_in "Description", with: "Chicken"
+      click_button 'Create Restaurant'
+      expect(Restaurant.count).to be 1
+      expect(page).to have_content "Nandos"
     end
-
   end
 
   context 'an invalid restaurant' do
