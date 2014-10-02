@@ -77,9 +77,7 @@ describe 'Yelp users' do
 
     it 'endorsing a review', js: true do
       visit '/restaurants'
-      click_link 'Endorse this review'
-      expect(page).to have_content '0 endorsements'
-      expect(page).to have_content 'Please log in or sign up for an account to endorse a review.'
+      expect(page).not_to have_link 'Endorse this review'
     end
 
   end
@@ -110,14 +108,29 @@ describe 'Yelp users' do
 
   end
 
-  it 'cannot endorse their own reviews', js: true do
-    create :pret
-    ethel = create :ethel
-    login_as ethel, scope: :user
-    leave_review "Super!", '★★★★★'
-    click_link 'Endorse this review'
-    expect(page).to have_content '0 endorsements'
-    expect(page).to have_content 'Endorsing your own review? Not the best idea.'
+  context 'restrictions:' do
+
+    before do
+      create :pret
+      ethel = create :ethel
+      login_as ethel, scope: :user
+      leave_review "Super!", '★★★★★'
+      vincent = create :vincent
+      login_as vincent, scope: :user
+      leave_review "Shit!", '★'
+      login_as ethel, scope: :user
+    end
+
+    it 'cannot endorse their own reviews', js: true do
+      first(:link, 'Endorse this review').click
+      expect(page).to have_content '0 endorsements'
+      expect(page).to have_content 'Endorsing your own review? Not the best idea.'
+    end
+
+    it 'can only edit their own reviews' do
+
+    end
+
   end
 
 end

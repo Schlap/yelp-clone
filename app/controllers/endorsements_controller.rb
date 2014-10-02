@@ -12,7 +12,7 @@ class EndorsementsController < ApplicationController
     elsif user_signed_in?
       render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: 'Sorry, you can only endorse a review once.' }
     else
-      render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: 'Please log in or sign up for an account to endorse a review.' }
+      render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: '' }
     end
   end
 
