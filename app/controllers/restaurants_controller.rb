@@ -23,7 +23,12 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    if user_signed_in?
+      @restaurant = Restaurant.find(params[:id])
+    else
+      flash[:notice] = 'Please log in or sign up for an account.'
+      redirect_to new_user_session_path
+    end
   end
 
   def update

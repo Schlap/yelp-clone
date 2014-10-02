@@ -12,7 +12,7 @@ describe 'displaying restaurants' do
 
   context 'restaurants have been added' do
     before do
-      Restaurant.create(name: 'KFC')
+      create :kfc
     end
 
     it 'should display restaurants' do
@@ -61,7 +61,9 @@ end
 describe 'editing restaurants' do
 
   before do
-    Restaurant.create(name: 'KFC')
+    create :kfc
+    ethel = create :ethel
+    login_as ethel, scope: :user
   end
 
   it 'allows the user to edit a restaurant' do
@@ -79,13 +81,13 @@ end
 describe 'deleting restaurants' do
 
   before do
-    Restaurant.create(name: 'Nandos')
+    create :kfc
   end
 
   it 'allows the user to delete a restaurant' do
     visit '/restaurants'
-    click_link 'Delete Nandos'
-    expect(page).not_to have_content("Nandos")
+    click_link 'Delete KFC'
+    expect(page).not_to have_content("KFC")
     expect(page).to have_content("Restaurant deleted")
   end
 

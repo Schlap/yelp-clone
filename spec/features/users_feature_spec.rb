@@ -19,7 +19,7 @@ describe 'Yelp users' do
   context 'with an account' do
 
     before do
-      @ethel = create(:ethel)
+      @ethel = create :ethel
     end
 
     it 'can sign in with their account' do
@@ -32,7 +32,7 @@ describe 'Yelp users' do
     end
 
     it 'can sign out while being logged in' do
-      login_as(@ethel, :scope => :user)
+      login_as @ethel, scope: :user
       visit '/restaurants'
       click_link 'Logout'
       expect(page).to have_content 'Signed out successfully.'
@@ -42,9 +42,19 @@ describe 'Yelp users' do
 
   context 'can only access some features when logged in' do
 
+    before do
+      create :pret
+    end
+
     it 'adding a restaurant' do
       visit '/restaurants'
       click_link 'Add a restaurant'
+      expect(page).to have_content 'Please log in or sign up for an account.'
+    end
+
+    it 'editing a restaurant' do
+      visit '/restaurants'
+      click_link 'Edit Pret'
       expect(page).to have_content 'Please log in or sign up for an account.'
     end
 
