@@ -44,6 +44,7 @@ describe 'creating restaurants' do
       fill_in "Description", with: "Chicken"
       click_button 'Create Restaurant'
       expect(Restaurant.count).to be 1
+      expect(page.current_path).to eq "/restaurants/#{Restaurant.first.id}"
       expect(page).to have_content "Nandos"
     end
   end
