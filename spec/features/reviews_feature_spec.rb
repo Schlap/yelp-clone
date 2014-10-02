@@ -51,4 +51,11 @@ describe 'Yelp reviews' do
     expect(page).to have_content 'Spectacular!'
   end
 
+  it 'can be deleted' do
+    leave_review "so so", '★★★'
+    click_link 'Delete review'
+    expect(page).not_to have_content 'so so'
+    expect(page).to have_content 'Review deleted'
+  end
+
 end
