@@ -59,7 +59,7 @@ end
 describe 'editing restaurants' do
 
   before do
-    create :kfc
+    @kfc = create :kfc
     ethel = create :ethel
     login_as ethel, scope: :user
   end
@@ -71,7 +71,7 @@ describe 'editing restaurants' do
     fill_in "Cuisine", with: "Fast food"
     click_button "Update Restaurant"
     expect(page).to have_content "PFC"
-    expect(page.current_path).to eq '/restaurants'
+    expect(page.current_path).to eq "/restaurants/#{@kfc.id}"
   end
 
 end
