@@ -16,6 +16,11 @@ describe 'Yelp reviews' do
     expect(page).to have_content("so so")
   end
 
+  it 'are displayed with their ratings' do
+    leave_review("Fantastic", '5')
+    expect(page).to have_content("★★★★★ Fantastic")
+  end
+
   it 'are used to calculate an average rating for the restaurant' do
     leave_review("so so", '3')
     leave_review("so so", '1')
