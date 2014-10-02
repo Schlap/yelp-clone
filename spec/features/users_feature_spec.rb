@@ -17,6 +17,12 @@ describe 'Yelp users' do
       expect(page).to have_content 'Welcome! You have signed up successfully.'
     end
 
+    it 'can use omniauth to sign in' do
+      visit '/restaurants'
+      click_link 'Register'
+      expect(page).to have_link 'Sign in with Facebook'
+    end
+
   end
 
   context 'with an account' do
