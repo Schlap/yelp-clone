@@ -8,7 +8,7 @@
 <h3>Average rating: <%= star_rating(@restaurant.average_rating) %></h3>
 <ul>
   <% @restaurant.reviews.each do |review| %>
-    <li class='review'><%= star_rating(review.rating) %> <%= review.comment %> - <i>posted by <%= User.find(review.user_id).email %> <%= time_ago_in_words(review.created_at) %> ago</i>
+    <li class='review'><%= star_rating(review.rating) %> <%= review.comment %> - <i>posted by <%= User.find(review.user_id).email %> <%= time_ago_in_words(review.updated_at) %> ago</i>
     <% if user_signed_in? && review.user_id == current_user.id %>
       <%= link_to 'Edit review', edit_review_path(review) %>
       <%= link_to 'Delete review', review_path(review), method: :delete %>
