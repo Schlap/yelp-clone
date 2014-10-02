@@ -5,6 +5,8 @@ describe 'reviewing' do
 
   before do
     create :kfc
+    ethel = create :ethel
+    login_as ethel, scope: :user
   end
 
   def leave_review(comment, rating)
