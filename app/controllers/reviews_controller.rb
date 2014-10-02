@@ -1,9 +1,12 @@
 class ReviewsController < ApplicationController
 
   def new
-    if user_signed_in?
-      @restaurant = Restaurant.find(params[:restaurant_id])
-      @review = Review.new
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    if user_signed_in? && @restaurant.reviews.find_by(user_id: current_user.id).nil?
+      @review = @restaurant.reviews.new
+    elsif user_signed_in?
+      flash[:notice] = 'Sorry, you can only review a restaurant once.'
+      redirect_to restaurants_path
     else
       flash[:notice] = 'Please log in or sign up for an account.'
       redirect_to new_user_session_path

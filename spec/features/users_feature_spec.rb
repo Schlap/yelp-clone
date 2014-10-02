@@ -45,7 +45,6 @@ describe 'Yelp users' do
 
     before do
       create :pret
-      pret = Restaurant.find_by(name: 'Pret')
       ethel = create :ethel
       login_as ethel, scope: :user
       leave_review "Great!", 5
@@ -81,6 +80,22 @@ describe 'Yelp users' do
       click_link 'Endorse this review'
       expect(page).to have_content '0 endorsements'
       expect(page).to have_content 'Please log in or sign up for an account to endorse a review.'
+    end
+
+  end
+
+  context 'can only access some features once' do
+
+    before do
+      create :pret
+      ethel = create :ethel
+      login_as ethel, scope: :user
+    end
+
+    it 'reviewing a restaurant' do
+      leave_review "Amazing!", 5
+      click_link 'Review Pret'
+      expect(page).to have_content 'Sorry, you can only review a restaurant once.'
     end
 
   end

@@ -23,6 +23,8 @@ describe 'Yelp reviews' do
 
   it 'are used to calculate an average rating for the restaurant' do
     leave_review("so so", '3')
+    vincent = create :vincent
+    login_as vincent, scope: :user
     leave_review("so so", '1')
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content("Average rating: ★★☆☆☆")
