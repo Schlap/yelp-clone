@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'timecop'
 
 describe 'reviewing' do
 
@@ -25,6 +26,13 @@ describe 'reviewing' do
     leave_review("so so", '1')
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content("Average rating: ★★☆☆☆")
+  end
+
+  it 'displays the relative timestamp of the review' do
+    Timecop.freeze(Time.now)
+    leave_review("so so", '3')
+    Timecop.travel(1)
+    expect(page).to have_content("less than a minute ago")
   end
 
 end
