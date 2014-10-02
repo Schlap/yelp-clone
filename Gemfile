@@ -47,4 +47,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'timecop'
+  gem 'factory_girl_rails'
 end
