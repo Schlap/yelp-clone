@@ -1,20 +1,13 @@
 require 'rails_helper'
 require 'timecop'
+require_relative './helpers/application_spec_helper'
 
 describe 'Yelp reviews' do
 
   before do
-    create :kfc
+    create :pret
     ethel = create :ethel
     login_as ethel, scope: :user
-  end
-
-  def leave_review(comment, rating)
-    visit '/restaurants'
-    click_link 'Review KFC'
-    fill_in "Comment", with: comment
-    select rating, from: 'Rating'
-    click_button 'Submit Review'
   end
 
   it 'can be left using the form' do

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative './helpers/application_spec_helper'
 
 describe 'Yelp users' do
 
@@ -45,7 +46,10 @@ describe 'Yelp users' do
     before do
       create :pret
       pret = Restaurant.find_by(name: 'Pret')
-      pret.reviews.create comment: 'Great!', rating: 5
+      ethel = create :ethel
+      login_as ethel, scope: :user
+      leave_review "Great!", 5
+      logout(:user)
     end
 
     it 'adding a restaurant' do

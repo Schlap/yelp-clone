@@ -1,15 +1,16 @@
 require 'rails_helper'
+require_relative './helpers/application_spec_helper'
 
 describe 'endorsing reviews' do
 
   before do
-    kfc = create :kfc
-    kfc.reviews.create(rating: 3, comment: "average")
+    pret = create :pret
     ethel = create :ethel
     login_as ethel, scope: :user
+    leave_review "Average", 3
   end
 
-  it 'can endorse a review updating the review endorsement count', js: true do
+  it 'displays the updated review endorsement count immediately', js: true do
     visit '/restaurants'
     click_link 'Endorse this review'
     expect(page).to have_content '1 endorsement'
