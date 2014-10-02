@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     @review = @restaurant.reviews.new(params[:review].permit(:comment, :rating))
     @review.user_id = current_user.id
     if @review.save
-      redirect_to restaurants_path
+      redirect_to restaurant_path(@restaurant)
     else
       render 'new'
     end
@@ -31,8 +31,9 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
+    @restaurant = Restaurant.find(@review.restaurant_id)
     @review.update(params[:review].permit(:comment, :rating))
-    redirect_to restaurants_path
+    redirect_to restaurant_path(@restaurant)
   end
 
   def destroy
