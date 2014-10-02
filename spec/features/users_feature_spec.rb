@@ -1,5 +1,6 @@
 require 'rails_helper'
 require_relative './helpers/application_spec_helper'
+require 'launchy'
 
 describe 'Yelp users' do
 
@@ -112,23 +113,32 @@ describe 'Yelp users' do
 
     before do
       create :pret
-      ethel = create :ethel
-      login_as ethel, scope: :user
+      @ethel = create :ethel
+      login_as @ethel, scope: :user
       leave_review "Super!", '★★★★★'
       vincent = create :vincent
       login_as vincent, scope: :user
       leave_review "Shit!", '★'
-      login_as ethel, scope: :user
+      login_as @ethel, scope: :user
+      visit '/restaurants'
     end
 
     it 'cannot endorse their own reviews', js: true do
-      first(:link, 'Endorse this review').click
-      expect(page).to have_content '0 endorsements'
-      expect(page).to have_content 'Endorsing your own review? Not the best idea.'
+      within '.review:first-of-type' do
+        expect(page).not_to have_link 'Endorse this review'
+      end
     end
 
     it 'can only edit their own reviews' do
+      within '.review:first-of-type' do
+        expect(page).to have_link 'Edit review'
+      end
+    end
 
+    it 'can only delete their own reviews' do
+      within '.review:first-of-type' do
+        expect(page).to have_link 'Delete review'
+      end
     end
 
   end
