@@ -90,22 +90,34 @@ describe 'Yelp users' do
       create :pret
       ethel = create :ethel
       login_as ethel, scope: :user
+      leave_review "Amazing!", 5
     end
 
     it 'reviewing a restaurant' do
-      leave_review "Amazing!", 5
       click_link 'Review Pret'
       expect(page).to have_content 'Sorry, you can only review a restaurant once.'
     end
 
     it 'endorsing a review', js: true do
-      leave_review "Amazing!", 5
+      vincent = create :vincent
+      login_as vincent, scope: :user
+      visit '/restaurants'
       click_link 'Endorse this review'
       click_link 'Endorse this review'
       expect(page).to have_content '1 endorsement'
       expect(page).to have_content 'Sorry, you can only endorse a review once.'
     end
 
+  end
+
+  it 'cannot endorse their own reviews', js: true do
+    create :pret
+    ethel = create :ethel
+    login_as ethel, scope: :user
+    leave_review "Super!", 5
+    click_link 'Endorse this review'
+    expect(page).to have_content '0 endorsements'
+    expect(page).to have_content 'Endorsing your own review? Not the best idea.'
   end
 
 end

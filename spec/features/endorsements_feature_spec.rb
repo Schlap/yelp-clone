@@ -12,6 +12,8 @@ describe 'endorsing reviews' do
 
   it 'displays the updated review endorsement count immediately', js: true do
     visit '/restaurants'
+    vincent = create :vincent
+    login_as vincent, scope: :user
     click_link 'Endorse this review'
     expect(page).to have_content '1 endorsement'
   end
