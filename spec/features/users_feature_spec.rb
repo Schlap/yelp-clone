@@ -87,6 +87,7 @@ describe 'Yelp users' do
 
     before do
       create :pret
+      @restaurant = Restaurant.first
       ethel = create :ethel
       login_as ethel, scope: :user
       leave_review "Amazing!", '★★★★★'
@@ -100,7 +101,7 @@ describe 'Yelp users' do
     it 'endorsing a review', js: true do
       vincent = create :vincent
       login_as vincent, scope: :user
-      visit '/restaurants'
+      visit "/restaurants/#{@restaurant.id}"
       click_link 'Endorse this review'
       click_link 'Endorse this review'
       expect(page).to have_content '1 endorsement'
@@ -113,6 +114,7 @@ describe 'Yelp users' do
 
     before do
       create :pret
+      @restaurant = Restaurant.first
       @ethel = create :ethel
       login_as @ethel, scope: :user
       leave_review "Super!", '★★★★★'
@@ -120,7 +122,7 @@ describe 'Yelp users' do
       login_as vincent, scope: :user
       leave_review "Shit!", '★'
       login_as @ethel, scope: :user
-      visit '/restaurants'
+      visit "/restaurants/#{@restaurant.id}"
     end
 
     it 'cannot endorse their own reviews', js: true do

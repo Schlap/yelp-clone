@@ -5,6 +5,7 @@ describe 'endorsing reviews' do
 
   before do
     pret = create :pret
+    @restaurant = Restaurant.first
     ethel = create :ethel
     login_as ethel, scope: :user
     leave_review "Average", '★★★'
@@ -13,7 +14,7 @@ describe 'endorsing reviews' do
   end
 
   it 'displays the updated review endorsement count immediately', js: true do
-    visit '/restaurants'
+    visit "/restaurants/#{@restaurant.id}"
     click_link 'Endorse this review'
     expect(page).to have_content '1 endorsement'
   end

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative './helpers/application_spec_helper'
 
 describe 'displaying restaurants' do
 
@@ -101,6 +102,9 @@ describe 'showing individual restaurants' do
 
   before do
     create :pret
+    ethel = create :ethel
+    login_as ethel, scope: :user
+    leave_review 'Breathtaking!', '★★★★★'
   end
 
   it 'clicking the restaurant name brings the user to a page with more info' do
@@ -108,6 +112,8 @@ describe 'showing individual restaurants' do
     click_link 'Pret'
     expect(page).to have_content "Fast organic food"
     expect(page).to have_content "Good for you and everyone involved"
+    expect(page).to have_content 'Average rating: ★★★★★'
+    expect(page).to have_content 'Breathtaking!'
   end
 
 end
