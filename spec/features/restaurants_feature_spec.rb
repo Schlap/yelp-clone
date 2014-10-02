@@ -37,12 +37,7 @@ describe 'creating restaurants' do
   context 'a valid restaurant' do
     it 'prompts the user to fill in a form and displays the new restaurant' do
       expect(Restaurant.count).to be 0
-      visit '/restaurants'
-      click_link "Add a restaurant"
-      fill_in "Name", with: "Nandos"
-      fill_in "Cuisine", with: "Portuguese"
-      fill_in "Description", with: "Chicken"
-      click_button 'Create Restaurant'
+      add_restaurant 'Nandos', 'Portuguese', 'Chicken'
       expect(Restaurant.count).to be 1
       expect(page.current_path).to eq "/restaurants/#{Restaurant.first.id}"
       expect(page).to have_content "Nandos"
@@ -53,8 +48,7 @@ describe 'creating restaurants' do
     it 'rejected if name is too short' do
       visit '/restaurants'
       click_link 'Add a restaurant'
-      fill_in 'Name', with: 'KF'
-      click_button 'Create Restaurant'
+      add_restaurant 'KF'
       expect(page).not_to have_css 'h2', text: "KF"
       expect(page).to have_content "Name is too short (minimum is 3 characters)"
     end

@@ -5,3 +5,12 @@ def leave_review(comment, rating)
   select rating, from: 'Rating'
   click_button 'Submit Review'
 end
+
+def add_restaurant(name, cuisine = '', description = '')
+  visit '/restaurants'
+  click_link "Add a restaurant"
+  fill_in "Name", with: name
+  fill_in "Cuisine", with: cuisine
+  fill_in "Description", with: description
+  click_button 'Create Restaurant'
+end
