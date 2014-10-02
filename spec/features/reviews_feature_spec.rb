@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'timecop'
 
-describe 'reviewing' do
+describe 'Yelp reviews' do
 
   before do
     create :kfc
@@ -17,24 +17,29 @@ describe 'reviewing' do
     click_button 'Submit Review'
   end
 
-  it 'allows users to leave reviews using the form' do
+  it 'can be left using the form' do
     leave_review("so so", '3')
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content("so so")
   end
 
-  it 'displays the average rating for each restaurant' do
+  it 'are used to calculate an average rating for the restaurant' do
     leave_review("so so", '3')
     leave_review("so so", '1')
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content("Average rating: ★★☆☆☆")
   end
 
-  it 'displays the relative timestamp of the review' do
+  it 'are shown with a relative timestamp' do
     Timecop.freeze(Time.now)
     leave_review("so so", '3')
     Timecop.travel(1)
     expect(page).to have_content("less than a minute ago")
+  end
+
+  it 'have an author associated with them' do
+    leave_review("so so", '3')
+    expect(page).to have_content("posted by ethel@factorygirl.com")
   end
 
 end
