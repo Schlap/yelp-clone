@@ -42,4 +42,13 @@ describe 'Yelp reviews' do
     expect(page).to have_content "posted by ethel@factorygirl.com"
   end
 
+  it 'can be edited' do
+    leave_review "so so", '★★★'
+    click_link 'Edit review'
+    fill_in 'Comment', with: 'Spectacular!'
+    select '★★★★★', from: 'Rating'
+    click_button 'Submit Review'
+    expect(page).to have_content 'Spectacular!'
+  end
+
 end

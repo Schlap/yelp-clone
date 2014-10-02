@@ -24,4 +24,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:id])
+    @restaurant = Restaurant.find(@review.restaurant_id)
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    @review.update(params[:review].permit(:comment, :rating))
+    redirect_to restaurants_path
+  end
+
 end

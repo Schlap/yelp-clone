@@ -1,0 +1,7 @@
+<%= form_for [@restaurant, @review] do |f| %>
+  <%= f.label :comment %>
+  <%= f.text_area :comment, size: '30x6' %>
+  <%= f.label :rating %>
+  <%= f.select :rating, [['★★★★★', 5], ['★★★★', 4], ['★★★', 3], ['★★', 2], ['★', 1]] %>
+  <%= f.submit "Submit Review" %>
+<% end %>
