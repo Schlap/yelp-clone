@@ -4,7 +4,7 @@ require 'timecop'
 describe 'reviewing' do
 
   before do
-    Restaurant.create(name: 'KFC')
+    create :kfc
   end
 
   def leave_review(comment, rating)

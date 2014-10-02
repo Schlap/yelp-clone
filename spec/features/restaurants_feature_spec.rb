@@ -96,14 +96,14 @@ end
 describe 'showing individual restaurants' do
 
   before do
-    Restaurant.create(name: "Nandos", cuisine: "Portuguese", description: "Finger lickin' good")
+    create :pret
   end
 
   it 'clicking the restaurant name brings the user to a page with more info' do
     visit '/restaurants'
-    click_link 'Nandos'
-    expect(page).to have_content("Portuguese")
-    expect(page).to have_content("Finger lickin' good")
+    click_link 'Pret'
+    expect(page).to have_content("Fast organic food")
+    expect(page).to have_content("Good for you and everyone involved")
   end
 
 end

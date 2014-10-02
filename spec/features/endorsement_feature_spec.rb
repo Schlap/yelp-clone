@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'endorsing reviews' do
 
   before do
-    kfc = Restaurant.create(name: 'KFC')
+    kfc = create :kfc
     kfc.reviews.create(rating: 3, comment: "average")
   end
 
