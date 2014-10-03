@@ -39,6 +39,8 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'rspec-rails'

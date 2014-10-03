@@ -19,4 +19,12 @@ describe 'endorsing reviews' do
     expect(page).to have_content '1 endorsement'
   end
 
+  it 'can be unendorsed', js: true do
+    visit "/restaurants/#{@pret.id}"
+    click_link 'Endorse this review'
+    visit "/restaurants/#{@pret.id}"
+    click_link 'Unendorse this review'
+    expect(page).to have_content '0 endorsements'
+  end
+
 end
