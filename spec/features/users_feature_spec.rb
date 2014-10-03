@@ -110,9 +110,8 @@ describe 'Yelp users' do
       login_as vincent, scope: :user
       visit "/restaurants/#{@pret.id}"
       click_link 'Endorse this review'
-      click_link 'Endorse this review'
+      expect(page).not_to have_link 'Endorse this review'
       expect(page).to have_content '1 endorsement'
-      expect(page).to have_content 'Sorry, you can only endorse a review once.'
     end
 
   end

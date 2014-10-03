@@ -1,5 +1,6 @@
 require 'rails_helper'
 require_relative './helpers/application_spec_helper'
+require 'launchy'
 
 describe 'endorsing reviews' do
 
@@ -22,7 +23,7 @@ describe 'endorsing reviews' do
   it 'can be unendorsed', js: true do
     visit "/restaurants/#{@pret.id}"
     click_link 'Endorse this review'
-    visit "/restaurants/#{@pret.id}"
+    expect(page).not_to have_link 'Endorse this review'
     click_link 'Unendorse this review'
     expect(page).to have_content '0 endorsements'
   end

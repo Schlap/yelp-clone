@@ -12,10 +12,14 @@
     <% if user_signed_in? && review.user_id == current_user.id %>
       <%= link_to 'Edit review', edit_review_path(review) %>
       <%= link_to 'Delete review', review_path(review), method: :delete %>
-    <% elsif user_signed_in? && review.endorsements.find_by(user_id: current_user.id).nil? %>
-      <span class="endorsement-links"><%= link_to 'Endorse this review', review_endorsements_path(review), class: "endorse" %></span>
     <% elsif user_signed_in? %>
-      <span class="endorsement-links"><%= link_to 'Unendorse this review', review_endorsement_path(review.id, Endorsement.find_by(user_id: current_user.id)), class: "unendorse" %></span>
+      <span class="endorsement-links">
+      <% if review.endorsements.find_by(user_id: current_user.id).nil? %>
+        <%= link_to 'Endorse this review', review_endorsements_path(review), class: "endorse" %>
+      <% else %>
+        <%= link_to 'Unendorse this review', review_endorsement_path(review.id, Endorsement.find_by(user_id: current_user.id)), class: "unendorse" %>
+      <% end %>
+      </span>
     <% end %>
     <span class="endorsements-count"><%= pluralize(review.endorsements.count, 'endorsement') %></span>
     </li>

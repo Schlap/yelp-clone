@@ -4,21 +4,15 @@ class EndorsementsController < ApplicationController
 
   def create
     review = Review.find(params[:review_id])
-    if user_signed_in? && review.endorsements.find_by(user_id: current_user.id).nil?
-      endorsement = review.endorsements.create(user_id: current_user.id)
-      render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: '' }
-    elsif user_signed_in?
-      render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: 'Sorry, you can only endorse a review once.' }
-    else
-      render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: '' }
-    end
+    endorsement = review.endorsements.create(user_id: current_user.id)
+    render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: '', replacement_link: "<a href='/reviews/#{review.id}/endorsements/#{endorsement.id}' class='unendorse'>Unendorse this review</a>" }
   end
 
   def destroy
     review = Review.find(params[:review_id])
     endorsement = Endorsement.find(params[:id])
     endorsement.destroy
-    render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: '' }
+    render json: { new_endorsements_count: pluralize(review.endorsements.count, 'endorsement'), notice: '', replacement_link: "<a href='/reviews/#{review.id}/endorsements' class='endorse'>Endorse this review</a>" }
   end
 
 end
