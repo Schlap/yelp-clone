@@ -3,6 +3,11 @@ require_relative './helpers/application_spec_helper'
 
 describe 'displaying restaurants' do
 
+  before do
+    ethel = create :ethel
+    login_as ethel, scope: :user
+  end
+
   context 'when no restaurants have been added' do
     it 'displays a prompt to add a restaurant' do
       visit '/restaurants'

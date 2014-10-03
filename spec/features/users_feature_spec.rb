@@ -52,7 +52,7 @@ describe 'Yelp users' do
   context 'can only access some features when logged in' do
 
     before do
-      create :pret
+      @pret = create :pret
       ethel = create :ethel
       login_as ethel, scope: :user
       leave_review "Great!", '★★★★★'
@@ -61,25 +61,28 @@ describe 'Yelp users' do
 
     it 'adding a restaurant' do
       visit '/restaurants'
-      click_link 'Add a restaurant'
+      expect(page).not_to have_link 'Add a restaurant'
+      visit '/restaurants/new'
       expect(page).to have_content 'Please log in or sign up for an account.'
     end
 
     it 'editing a restaurant' do
       visit '/restaurants'
-      click_link 'Edit Pret'
+      expect(page).not_to have_link 'Edit Pret'
+      visit "/restaurants/#{@pret.id}/edit"
       expect(page).to have_content 'Please log in or sign up for an account.'
     end
 
     it 'deleting a restaurant' do
       visit '/restaurants'
-      click_link 'Delete Pret'
-      expect(page).to have_content 'Please log in or sign up for an account.'
+      expect(page).not_to have_link 'Delete Pret'
+
     end
 
     it 'reviewing a restaurant' do
       visit '/restaurants'
-      click_link 'Review Pret'
+      expect(page).not_to have_link 'Review Pret'
+      visit "/restaurants/#{@pret.id}/reviews/new"
       expect(page).to have_content 'Please log in or sign up for an account.'
     end
 
