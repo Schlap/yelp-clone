@@ -9,7 +9,6 @@ $(document).ready(function(){
     event.preventDefault();
     $.post(this.href, function(response){
       endorsementCount.text(response.new_endorsements_count);
-      $('.notice').text(response.notice);
       $('.endorsement-links').html(response.replacement_link);
     });
   })
@@ -22,7 +21,6 @@ $(document).ready(function(){
       type: 'DELETE',
       success: function(response) {
         endorsementCount.text(response.new_endorsements_count);
-        $('.notice').text(response.notice);
         $('.endorsement-links').html(response.replacement_link);
       }
     })
