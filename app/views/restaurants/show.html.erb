@@ -15,9 +15,9 @@
     <% elsif user_signed_in? %>
       <span class="endorsement-links">
       <% if review.endorsements.find_by(user_id: current_user.id).nil? %>
-        <%= link_to 'Endorse this review', review_endorsements_path(review), class: "endorse" %>
+        <%= link_to 'Endorse', review_endorsements_path(review), class: "endorse" %>
       <% else %>
-        <%= link_to 'Unendorse this review', review_endorsement_path(review.id, Endorsement.find_by(user_id: current_user.id)), class: "unendorse" %>
+        <%= link_to 'Unendorse', review_endorsement_path(review.id, Endorsement.find_by(user_id: current_user.id)), class: "unendorse" %>
       <% end %>
       </span>
     <% end %>

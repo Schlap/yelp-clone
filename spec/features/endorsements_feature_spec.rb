@@ -16,15 +16,15 @@ describe 'endorsing reviews' do
 
   it 'displays the updated review endorsement count immediately', js: true do
     visit "/restaurants/#{@pret.id}"
-    click_link 'Endorse this review'
+    click_link 'Endorse'
     expect(page).to have_content '1 endorsement'
   end
 
   it 'can be unendorsed', js: true do
     visit "/restaurants/#{@pret.id}"
-    click_link 'Endorse this review'
-    expect(page).not_to have_link 'Endorse this review'
-    click_link 'Unendorse this review'
+    click_link 'Endorse'
+    expect(page).not_to have_link 'Endorse'
+    click_link 'Unendorse'
     expect(page).to have_content '0 endorsements'
   end
 

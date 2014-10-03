@@ -85,7 +85,7 @@ describe 'Yelp users' do
 
     it 'endorsing a review', js: true do
       visit '/restaurants'
-      expect(page).not_to have_link 'Endorse this review'
+      expect(page).not_to have_link 'Endorse'
     end
 
   end
@@ -109,8 +109,8 @@ describe 'Yelp users' do
       vincent = create :vincent
       login_as vincent, scope: :user
       visit "/restaurants/#{@pret.id}"
-      click_link 'Endorse this review'
-      expect(page).not_to have_link 'Endorse this review'
+      click_link 'Endorse'
+      expect(page).not_to have_link 'Endorse'
       expect(page).to have_content '1 endorsement'
     end
 
@@ -133,10 +133,10 @@ describe 'Yelp users' do
 
     it 'cannot endorse their own reviews', js: true do
       within '.review:first-of-type' do
-        expect(page).not_to have_link 'Endorse this review'
+        expect(page).not_to have_link 'Endorse'
       end
       within '.review:last-of-type' do
-        expect(page).to have_link 'Endorse this review'
+        expect(page).to have_link 'Endorse'
       end
     end
 
