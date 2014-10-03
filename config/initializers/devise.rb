@@ -2,7 +2,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  config.omniauth :facebook, Rails.application.secrets[:app_id], Rails.application.secrets[:app_secret], scope: 'email'
+  config.omniauth :facebook, Rails.application.secrets[:app_id], Rails.application.secrets[:app_secret]
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
