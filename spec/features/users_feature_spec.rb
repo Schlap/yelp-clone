@@ -63,14 +63,14 @@ describe 'Yelp users' do
       visit '/restaurants'
       expect(page).not_to have_link 'Add a restaurant'
       visit '/restaurants/new'
-      expect(page).to have_content 'Please log in or sign up for an account.'
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
 
     it 'editing a restaurant' do
       visit '/restaurants'
       expect(page).not_to have_link 'Edit Pret'
       visit "/restaurants/#{@pret.id}/edit"
-      expect(page).to have_content 'Please log in or sign up for an account.'
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
 
     it 'deleting a restaurant' do
@@ -83,7 +83,7 @@ describe 'Yelp users' do
       visit '/restaurants'
       expect(page).not_to have_link 'Review Pret'
       visit "/restaurants/#{@pret.id}/reviews/new"
-      expect(page).to have_content 'Please log in or sign up for an account.'
+      expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
 
     it 'endorsing a review', js: true do
