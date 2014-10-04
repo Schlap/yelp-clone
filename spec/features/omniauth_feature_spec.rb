@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe 'Omniauth' do
+describe 'OmniAuth' do
 
   before do 
-    visit "/users/auth/facebook"
+    visit '/users/auth/facebook'
   end
 
   it 'signing in with facebook' do
-    expect(page).to have_content('Welcome, Ethel Ng')
+    expect(page).to have_content 'Welcome, Ethel Ng'
   end
 
   it 'should successfully create a user' do

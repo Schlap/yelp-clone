@@ -26,6 +26,7 @@ describe 'displaying restaurants' do
       expect(page).to have_content 'KFC'
       expect(page).to have_content 'Fast food'
       expect(page).to have_content 'Fried chicken'
+      expect(page).to have_selector '.restaurant-image'
       expect(page).not_to have_content 'No restaurants yet'
     end
   end

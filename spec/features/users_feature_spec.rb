@@ -1,6 +1,5 @@
 require 'rails_helper'
 require_relative './helpers/application_spec_helper'
-require 'launchy'
 
 describe 'Yelp users' do
 
