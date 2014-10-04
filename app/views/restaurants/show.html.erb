@@ -8,6 +8,9 @@
   <%= link_to "Review #{@restaurant.name}", new_restaurant_review_path(@restaurant) %>
 <% end %>
 <h3>Average rating: <%= star_rating(@restaurant.average_rating) %></h3>
+<section class='restaurant-image'>
+  <%= image_tag @restaurant.image.url(:medium) %>
+</section>
 <ul>
   <% @restaurant.reviews.each do |review| %>
     <li class='review'><%= star_rating(review.rating) %> <%= review.comment %> - <i>posted by <%= User.find(review.user_id).email %> <%= time_ago_in_words(review.updated_at) %> ago</i>

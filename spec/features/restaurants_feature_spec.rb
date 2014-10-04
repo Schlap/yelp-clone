@@ -26,7 +26,7 @@ describe 'displaying restaurants' do
       expect(page).to have_content 'KFC'
       expect(page).to have_content 'Fast food'
       expect(page).to have_content 'Fried chicken'
-      expect(page).to have_selector '.restaurant-image'
+      expect(page).to have_selector '.restaurant-thumb'
       expect(page).not_to have_content 'No restaurants yet'
     end
   end
@@ -115,6 +115,7 @@ describe 'showing individual restaurants' do
     expect(page).to have_content "Good for you and everyone involved"
     expect(page).to have_content 'Average rating: ★★★★★'
     expect(page).to have_content 'Breathtaking!'
+    expect(page).to have_selector '.restaurant-image'
   end
 
 end
