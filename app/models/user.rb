@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_many :reviews, dependent: :destroy
-
+  has_attached_file :avatar, :styles => { :thumb => "100x100>" }, :default_url => "/images/:style/missing-user.png"
   validates :username, presence: true, uniqueness: {
     case_sensitive: false
   }

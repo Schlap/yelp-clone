@@ -39,7 +39,8 @@ describe 'Yelp reviews' do
 
   it 'have an author associated with them' do
     leave_review "so so", '★★★'
-    expect(page).to have_content "posted by ethel@factorygirl.com"
+    expect(page).to have_content "ch2ch3's verdict:"
+    expect(page).to have_selector '.user-avatar'
   end
 
   it 'can be edited' do
