@@ -5,7 +5,12 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_many :reviews, dependent: :destroy
-  has_attached_file :avatar, :styles => { :thumb => "100x100>" }, :default_url => "/images/:style/missing-user.png"
+  has_attached_file :avatar,
+                    styles: { :thumb => "100x100>" },
+                    default_url: '/images/:style/missing-user.png',
+                    storage: :s3,
+                    s3_credentials: Proc.new{|a| a.instance.s3_credentials }
+
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates :username, presence: true, uniqueness: {
     case_sensitive: false
@@ -39,6 +44,10 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def s3_credentials
+    { bucket: 'ch2ch3-yelp', access_key_id: Rails.application.secrets[:access_key_id], secret_access_key: Rails.application.secrets[:secret_access_key] }
   end
 
 end
