@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :reviews, dependent: :destroy
   has_attached_file :avatar, :styles => { :thumb => "100x100>" }, :default_url => "/images/:style/missing-user.png"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates :username, presence: true, uniqueness: {
     case_sensitive: false
   }
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.username = auth.info.name
-      # user.image = auth.info.image
+      user.avatar = auth.info.image
     end
   end
   

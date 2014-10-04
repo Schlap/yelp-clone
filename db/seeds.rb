@@ -10,7 +10,7 @@ Restaurant.destroy_all
 Review.destroy_all
 User.destroy_all
 
-ethel = User.create(username: 'ch2ch3', email: 'ethel.ng@gmail.com', password: 'password', password_confirmation: 'password')
+ethel = User.create(username: 'ch2ch3', email: 'ethel@gmail.com', password: 'password', password_confirmation: 'password')
 james = User.create(username: 'jrmcneil', email: 'james@gmail.com', password: 'password', password_confirmation: 'password')
 
 kfc = Restaurant.create(name: 'KFC', cuisine: 'Fast food', description: 'Fried chicken')
