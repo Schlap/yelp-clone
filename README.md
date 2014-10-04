@@ -63,8 +63,9 @@ To run the tests:
 $ rspec
 ```
 
-To view the app, start the server:
+To view the app, seed the database then start the server:
 ```shell
+$ bin/rake db:seed
 $ rails server
 ```
 
