@@ -6,22 +6,24 @@ $(document).ready(function(){
 
   $('.endorsement-links').on('click', '.endorse', function(event){
     var endorsementCount = $(this).parent().siblings('.endorsements-count');
+    var linkElement = $(this).parent();
     event.preventDefault();
     $.post(this.href, function(response){
       endorsementCount.text(response.new_endorsements_count);
-      $('.endorsement-links').html(response.replacement_link);
+      $(linkElement).html(response.replacement_link);
     });
   })
 
   $('.endorsement-links').on('click', '.unendorse', function(event){
     var endorsementCount = $(this).parent().siblings('.endorsements-count');
+    var linkElement = $(this).parent();
     event.preventDefault();
     $.ajax({
       url: this.href,
       type: 'DELETE',
       success: function(response) {
         endorsementCount.text(response.new_endorsements_count);
-        $('.endorsement-links').html(response.replacement_link);
+        $(linkElement).html(response.replacement_link);
       }
     })
   })
