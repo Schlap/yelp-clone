@@ -21,6 +21,7 @@ Technologies used:
 - RSpec
 - Capybara
 - FactoryGirl
+- Poltergeist
 - HTML5
 - jQuery
 - AJAX
