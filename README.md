@@ -1,15 +1,17 @@
 Yelp Clone
 ==========
-This week's project is an introduction to working with Rails. I recreated the core functionality of Yelp such that:
+This week's project is an introduction to working with Rails. I recreated the core functionality of Yelp:
 - users can log in and out of the service
 - users can add, edit, and delete restaurants
 - users can leave reviews for restaurants
 - users can endorse and unendorse others' reviews
 - restaurants have an average rating
 
-Only logged-in users are able to create restaurants and leave reviews, and users can only leave one review per restaurant.
+Only logged-in users are able to create, edit, update, or delete restaurants. When logged in, users are also able to leave reviews, or edit/delete reviews they have already written. Users can only leave one review per restaurant and one endorsement per review. Finally, users cannot endorse their own reviews.
 
-The next step in this project would be to improve the UX.
+To do:
+- set up Mailgun for confirming registration and password reset
+- styling to improve UX
 
 Technologies used:
 - Ruby
@@ -69,4 +71,4 @@ $ bin/rake db:seed
 $ rails server
 ```
 
-Visit http://localhost:3000/restaurants in your browser.
+Visit http://localhost:3000/restaurants in your browser. You can then login as 'ch2ch3' with the password 'password', or create a new user.
